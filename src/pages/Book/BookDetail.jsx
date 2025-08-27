@@ -52,7 +52,6 @@ export default function BookDetail() {
           </Link>
         </div>
       </div>
-
       <div className="bg-white bg-opacity-80 backdrop-blur-sm rounded-lg shadow-md p-6 flex flex-col md:flex-row gap-6">
         <div className="md:w-1/3 flex items-center justify-center bg-gray-100 rounded-lg overflow-hidden">
           <img
@@ -62,59 +61,68 @@ export default function BookDetail() {
           />
         </div>
 
-        {/* Data Buku */}
-        <div className="md:w-2/3">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+        <div className="md:w-2/3 flex flex-col gap-4">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
             {book.title}
           </h2>
 
-          <table className="w-full table-auto border-collapse">
-            <tbody>
-              <tr className="border-b border-gray-200 hover:bg-gray-50">
-                <td className="py-2 font-medium text-gray-700 w-1/3">
-                  Penulis
-                </td>
-                <td className="py-2 text-gray-800">
-                  {book.author?.name || "-"}
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 hover:bg-gray-50">
-                <td className="py-2 font-medium text-gray-700">Gender</td>
-                <td className="py-2 text-gray-800">
-                  {book.author?.gender === "L" ? "Laki-laki" : "Perempuan"}
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 hover:bg-gray-50">
-                <td className="py-2 font-medium text-gray-700">Email</td>
-                <td className="py-2 text-gray-800">
-                  {book.author?.email || "-"}
-                </td>
-              </tr>
-              <tr className="border-b border-gray-200 hover:bg-gray-50">
-                <td className="py-2 font-medium text-gray-700">Tahun Terbit</td>
-                <td className="py-2 text-gray-800">{book.published_year}</td>
-              </tr>
-              <tr className="border-b border-gray-200 hover:bg-gray-50">
-                <td className="py-2 font-medium text-gray-700">Penerbit</td>
-                <td className="py-2 text-gray-800">{book.published}</td>
-              </tr>
-              <tr className="border-b border-gray-200 hover:bg-gray-50">
-                <td className="py-2 font-medium text-gray-700">
-                  Jumlah Halaman
-                </td>
-                <td className="py-2 text-gray-800">{book.pages}</td>
-              </tr>
-              <tr className="border-b border-gray-200 hover:bg-gray-50">
-                <td className="py-2 font-medium text-gray-700">ISBN</td>
-                <td className="py-2 text-gray-800">{book.isbn}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="bg-gray-50 bg-opacity-70 rounded-lg p-4 shadow-inner">
+            <h3 className="font-medium text-gray-700 mb-2">Detail Buku</h3>
+            <table className="w-full table-auto border-collapse">
+              <tbody>
+                <tr className="border-b border-gray-200 hover:bg-gray-100">
+                  <td className="py-2 font-medium text-gray-700 w-1/3">
+                    Tahun Terbit
+                  </td>
+                  <td className="py-2 text-gray-800">{book.published_year}</td>
+                </tr>
+                <tr className="border-b border-gray-200 hover:bg-gray-100">
+                  <td className="py-2 font-medium text-gray-700">Penerbit</td>
+                  <td className="py-2 text-gray-800">{book.published}</td>
+                </tr>
+                <tr className="border-b border-gray-200 hover:bg-gray-100">
+                  <td className="py-2 font-medium text-gray-700">
+                    Jumlah Halaman
+                  </td>
+                  <td className="py-2 text-gray-800">{book.pages}</td>
+                </tr>
+                <tr className="border-b border-gray-200 hover:bg-gray-100">
+                  <td className="py-2 font-medium text-gray-700">ISBN</td>
+                  <td className="py-2 text-gray-800">{book.isbn}</td>
+                </tr>
+              </tbody>
+            </table>
 
-          {/* Deskripsi */}
-          <div className="mt-4 p-4 bg-gray-50 rounded-lg shadow-inner">
-            <h3 className="font-medium text-gray-700 mb-2">Deskripsi</h3>
-            <p className="text-gray-800">{book.description || "-"}</p>
+            <div className="mt-4 p-4 bg-white rounded-md shadow-inner">
+              <h4 className="font-medium text-gray-700 mb-1">Deskripsi</h4>
+              <p className="text-gray-800">{book.description || "-"}</p>
+            </div>
+          </div>
+
+          <div className="bg-gray-50 bg-opacity-70 rounded-lg p-4 shadow-inner mt-4">
+            <h3 className="font-medium text-gray-700 mb-2">Detail Penulis</h3>
+            <table className="w-full table-auto border-collapse">
+              <tbody>
+                <tr className="border-b border-gray-200 hover:bg-gray-100">
+                  <td className="py-2 font-medium text-gray-700 w-1/3">Nama</td>
+                  <td className="py-2 text-gray-800">
+                    {book.author?.name || "-"}
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 hover:bg-gray-100">
+                  <td className="py-2 font-medium text-gray-700">Gender</td>
+                  <td className="py-2 text-gray-800">
+                    {book.author?.gender === "L" ? "Laki-laki" : "Perempuan"}
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 hover:bg-gray-100">
+                  <td className="py-2 font-medium text-gray-700">Email</td>
+                  <td className="py-2 text-gray-800">
+                    {book.author?.email || "-"}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

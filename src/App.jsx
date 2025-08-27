@@ -5,6 +5,8 @@ import AppLayout from "./layouts/AppLayout";
 import CreateBook from "./pages/Book/CreateBook";
 import UpdateBook from "./pages/Book/UpdateBook";
 import BookDetail from "./pages/Book/BookDetail";
+import CreateAuthor from "./pages/Author/CreateAuthor";
+import UpdateAuthor from "./pages/Author/UpdateAuthor";
 
 function App() {
   return (
@@ -17,6 +19,17 @@ function App() {
           path="authors"
           element={<AuthorPage />}
         />
+
+        <Route
+          path="authors/create"
+          element={<CreateAuthor />}
+        />
+
+        <Route
+          path="authors/edit/:id"
+          element={<UpdateAuthor />}
+        />
+
         <Route
           path="books"
           element={<BookPage />}

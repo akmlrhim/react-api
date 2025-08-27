@@ -8,7 +8,7 @@ export default function BookPage() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState(""); //
+  const [successMessage, setSuccessMessage] = useState(""); 
 
   const [showModal, setShowModal] = useState(false); // modal state
   const [deleteBookId, setDeleteBookId] = useState(null); // id buku yg akan dihapus
