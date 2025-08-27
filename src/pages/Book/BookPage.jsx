@@ -10,6 +10,9 @@ export default function BookPage() {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState(""); //
 
+  const [showModal, setShowModal] = useState(false); // modal state
+  const [deleteBookId, setDeleteBookId] = useState(null); // id buku yg akan dihapus
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -41,6 +44,34 @@ export default function BookPage() {
 
     fetchBook();
   }, []);
+
+  const handleDelete = async () => {
+    if (!deleteBookId) return;
+
+    try {
+      const res = await fetch(
+        `http://127.0.0.1:9000/api/books/${deleteBookId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await res.json();
+
+      if (res.ok) {
+        setBooks((prevBooks) =>
+          prevBooks.filter((book) => book.id !== deleteBookId)
+        );
+        setSuccessMessage(data.message || "Buku berhasil dihapus!");
+      } else {
+        alert(data.message || "Gagal menghapus buku.");
+      }
+    } catch (err) {
+      alert("Terjadi kesalahan: " + err.message);
+    } finally {
+      setShowModal(false);
+      setDeleteBookId(null);
+    }
+  };
 
   if (loading) return <Loading message="Memuat data buku." />;
   if (error) return <Error message={error} />;
@@ -95,13 +126,31 @@ export default function BookPage() {
                 </p>
 
                 <div className="mt-auto flex gap-2">
-                  <button className="flex-1 px-3 py-2 bg-green-600 text-white text-sm hover:bg-green-500 rounded-md">
-                    Detail
-                  </button>
-                  <button className="flex-1 px-3 py-2 bg-yellow-600 text-white text-sm hover:bg-yellow-500 rounded-md">
-                    Edit
-                  </button>
-                  <button className="flex-1 px-3 py-2 bg-red-600 text-white text-sm hover:bg-red-500 rounded-md">
+                  <Link
+                    to={`/books/${book.id}`}
+                    className="flex-1"
+                  >
+                    <button className="w-full px-3 py-2 bg-green-600 text-white text-sm hover:bg-green-500 rounded-md">
+                      Detail
+                    </button>
+                  </Link>
+
+                  <Link
+                    to={`/books/edit/${book.id}`}
+                    className="flex-1"
+                  >
+                    <button className="w-full px-3 py-2 bg-yellow-600 text-white text-sm hover:bg-yellow-500 rounded-md">
+                      Edit
+                    </button>
+                  </Link>
+
+                  <button
+                    onClick={() => {
+                      setDeleteBookId(book.id);
+                      setShowModal(true);
+                    }}
+                    className="flex-1 px-3 py-2 bg-red-600 text-white text-sm hover:bg-red-500 rounded-md"
+                  >
                     Hapus
                   </button>
                 </div>
@@ -117,6 +166,30 @@ export default function BookPage() {
           <p className="text-gray-500">
             Data buku akan muncul di sini setelah ditambahkan
           </p>
+        </div>
+      )}
+
+      {/* Modal Konfirmasi */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
+          <div className="bg-white rounded-lg p-6 w-96">
+            <h2 className="text-lg font-semibold mb-4">Konfirmasi Hapus</h2>
+            <p className="mb-6">Apakah Anda yakin ingin menghapus buku ini?</p>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setShowModal(false)}
+                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
+              >
+                Batal
+              </button>
+              <button
+                onClick={handleDelete}
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500"
+              >
+                Hapus
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
