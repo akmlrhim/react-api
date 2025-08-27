@@ -141,23 +141,24 @@ export default function AuthorPage() {
                     {author.age} tahun
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
-                    <Link
-                      to={`/authors/edit/${author.id}`}
-                      className="flex-1"
-                    >
-                      <button className="px-3 py-1 bg-yellow-700 text-white hover:bg-yellow-600 rounded-md">
-                        Edit
+                    <div className="flex-1">
+                      <Link to={`/authors/edit/${author.id}`}>
+                        <button className="w-full px-3 py-1 bg-yellow-700 text-white hover:bg-yellow-600 rounded-md">
+                          Edit
+                        </button>
+                      </Link>
+                    </div>
+                    <div className="flex-1">
+                      <button
+                        onClick={() => {
+                          setDeleteBookId(author.id);
+                          setShowModal(true);
+                        }}
+                        className="w-full px-3 py-1 bg-red-700 text-white hover:bg-red-600 rounded-md"
+                      >
+                        Hapus
                       </button>
-                    </Link>
-                    <button
-                      onClick={() => {
-                        setDeleteBookId(author.id);
-                        setShowModal(true);
-                      }}
-                      className="px-3 py-1 bg-red-700 text-white hover:bg-red-600 rounded-md"
-                    >
-                      Hapus
-                    </button>
+                    </div>
                   </td>
                 </tr>
               ))}
