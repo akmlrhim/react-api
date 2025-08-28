@@ -79,7 +79,7 @@ export default function BookPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Kelola Buku</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Buku</h1>
         <Link to="/books/create">
           <button className="px-4 py-2 bg-blue-800 text-white hover:bg-blue-700 rounded-lg shadow-md">
             Tambah Buku

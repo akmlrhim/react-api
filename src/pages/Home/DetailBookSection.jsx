@@ -105,7 +105,9 @@ export default function DetailBookSection() {
                   </td>
                 </tr>
                 <tr className="border-b border-gray-200 hover:bg-gray-100">
-                  <td className="py-2 font-medium text-gray-700">Gender</td>
+                  <td className="py-2 font-medium text-gray-700">
+                    Jenis Kelamin
+                  </td>
                   <td className="py-2 text-gray-800">
                     {book.author?.gender === "L" ? "Laki-laki" : "Perempuan"}
                   </td>

@@ -79,7 +79,7 @@ export default function AuthorPage() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-8">
         <div className="flex items-center space-x-3 mb-2">
-          <h1 className="text-3xl font-bold text-gray-900">Kelola Authors</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Penulis</h1>
         </div>
         <div className="flex items-center space-x-2 mt-4 text-sm text-gray-500">
           <Link to={"/authors/create"}>
@@ -111,7 +111,7 @@ export default function AuthorPage() {
                   Email
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                  Gender
+                  Jenis Kelamin
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                   Usia
